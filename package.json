@@ -10,7 +10,7 @@
     "docs:preview": "vitepress preview docs"
   },
   "keywords": [],
-  "author": "",
+  "author": "AkyuC",
   "license": "ISC",
   "devDependencies": {
     "vitepress": "^1.1.4"
