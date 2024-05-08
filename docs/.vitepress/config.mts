@@ -8,21 +8,13 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' }
+      { text: 'Home', link: '/' },
+      { text: 'About Me', link: '/about' },
+      { text: 'Blog', link: '/blog' }
     ],
 
-    // sidebar: [
-    //   {
-    //     text: 'Examples',
-    //     items: [
-    //       { text: 'Markdown Examples', link: '/markdown-examples' },
-    //       { text: 'Runtime API Examples', link: '/api-examples' }
-    //     ]
-    //   }
-    // ],
-
     socialLinks: [
-      { icon: 'github', link: 'https://akyuc.github.io/ChuBlog' }
+      { icon: 'github', link: 'https://github.com/AkyuC' }
     ]
   }
 })
