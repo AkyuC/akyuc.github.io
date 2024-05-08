@@ -6,7 +6,7 @@ set DATESTR=%DATE:~10,4%-%DATE:~7,2%-%DATE:~4,2%_%TIME:~0,2%-%TIME:~3,2%-%TIME:~
 git status
 
 :: 添加新文件到暂存区
-git add "."
+git add .
 
 :: 提交更改
 git commit -m "Updated blog with current time: %DATESTR%"
