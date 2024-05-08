@@ -35,9 +35,9 @@ jobs:
         run: npm install -g pnpm
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: 'pnpm'
 
       - name: Install dependencies
@@ -47,12 +47,12 @@ jobs:
         run: pnpm run docs:build
 
       - name: Configure Pages
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@v4
 
       - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: docs/.vitepress/dist
 
       - name: Deploy
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4

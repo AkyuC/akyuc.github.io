@@ -17,7 +17,7 @@ git status
 git add .
 
 :: 提交更改
-git commit -m "Updated blog with current time: %DATESTR%"
+git commit -m "Updated blog with time: %DATESTR%"
 
 :: 推送到GitHub
 git push origin main || (
