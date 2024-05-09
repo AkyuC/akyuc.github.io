@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import { navItems } from './nav.ts'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -7,11 +8,7 @@ export default defineConfig({
   lastUpdated: true,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    nav: [
-      { text: 'Home', link: '/' },
-      { text: 'About Me', link: '/about' },
-      { text: 'Blog', link: '/blog' }
-    ],
+    nav: navItems,
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/AkyuC' }
