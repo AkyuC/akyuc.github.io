@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { navItems } from './nav.ts'
+import { sidebarBlog } from './blogConfig.ts'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -9,6 +10,8 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: navItems,
+
+    sidebar: sidebarBlog,
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/AkyuC' }

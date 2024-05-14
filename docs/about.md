@@ -21,7 +21,7 @@ title: About Me
 
 </div>
 
-<!-- ### Publications
+<!-- ### Publications in Graduate School
 
 1. **Liao J**, Sun C, Zheng J, et al. Dred: A drl-based energy-efficient data collection scheme for uav-assisted wsns[C]. 2022 IEEE 22nd International Conference on Communication Technology (ICCT), 2022, 846-851.
 2. **Liao J**, Sun C, Zheng J, et al. Multi-agent reinforcement learning for backscattering data collection in multi-uav iot[C]. ICC 2024-IEEE International Conference on Communications, 2024,.(Accepted)  
