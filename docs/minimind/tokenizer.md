@@ -2,7 +2,7 @@
 这些小单位可以是单词、词根、子词或字符，具体取决于使用的分词策略。
 
 最简单的分词方式是古典分词方法，直接按照标点符号分词，或者按语法规则分词。但是缺陷明显：
-1. 对于未在词表中出现的词（Out Of Vocabulary, OOV ），模型将无法处理（未知符号标记为 [<color=r>UNK</color>]）
+1. 对于未在词表中出现的词（Out Of Vocabulary, OOV ），模型将无法处理（未知符号标记为 [UNK]）
 2. 词表中的低频词/稀疏词在模型训无法得到训练（因为词表大小有限，太大的话会影响效率）。
 3. **很多语言难以用空格进行分词**，例如英语单词的多形态，"look"衍生出的"looks", "looking", "looked"，其实都是一个意思，但是在词表中却被当作不同的词处理，模型也无法通过 old, older, oldest 之间的关系学到 smart, smarter, smartest 之间的关系。这一方面增加了训练冗余，另一方面也造成了大词汇量问题。
 
@@ -33,9 +33,34 @@ Byte-level BPE(BBPE)和Byte-Pair Encoding (BPE)区别就是BPE是最小词汇是
 所以实现的步骤和BPE就是实现的粒度不一样，其他的都是一样的。
 
 ### minimind 中的 tokneizer
+
+在 scripts/train_tokenizer.py 文件中，使用 hugging face 的 BBPE 算法来训练，但是没有给出分词的数据集
+<code>
+    # 初始化tokenizer
+    tokenizer = Tokenizer(models.BPE())
+    tokenizer.pre_tokenizer = pre_tokenizers.ByteLevel(add_prefix_space=False)
+
+    # 定义特殊token
+    special_tokens = ["<unk>", "<s>", "</s>"]
+
+    # 设置训练器并添加特殊token
+    trainer = trainers.BpeTrainer(
+        vocab_size=6400,
+        special_tokens=special_tokens,  # 确保这三个token被包含
+        show_progress=True,
+        initial_alphabet=pre_tokenizers.ByteLevel.alphabet()
+    )
+
+    # 读取文本数据
+    texts = read_texts_from_jsonl(data_path)
+
+    # 训练tokenizer
+    tokenizer.train_from_iterator(texts, trainer=trainer)
+</code>
+
 在 train_pretrain.py 文件中，直接加载已经分好的词表
 
-`
+<code>
 def init_model(lm_config):
 
     tokenizer = AutoTokenizer.from_pretrained('./model/minimind_tokenizer')
@@ -43,9 +68,9 @@ def init_model(lm_config):
     model = MiniMindLM(lm_config).to(args.device)
 
     Logger(f'LLM总参数量：{sum(p.numel() for p in model.parameters() if p.requires_grad) / 1e6:.3f} 百万')
-    
+
     return model, tokenizer
-`
+</code>
 
 
 ### Reference
