@@ -35,7 +35,7 @@ Byte-level BPE(BBPE)和Byte-Pair Encoding (BPE)区别就是BPE是最小词汇是
 ### minimind 中的 tokneizer
 
 在 scripts/train_tokenizer.py 文件中，使用 hugging face 的 BBPE 算法来训练，但是没有给出分词的数据集
-<code>
+```
     # 初始化tokenizer
     tokenizer = Tokenizer(models.BPE())
     tokenizer.pre_tokenizer = pre_tokenizers.ByteLevel(add_prefix_space=False)
@@ -56,22 +56,17 @@ Byte-level BPE(BBPE)和Byte-Pair Encoding (BPE)区别就是BPE是最小词汇是
 
     # 训练tokenizer
     tokenizer.train_from_iterator(texts, trainer=trainer)
-</code>
+```
 
 在 train_pretrain.py 文件中，直接加载已经分好的词表
 
-<code>
+```
 def init_model(lm_config):
-
     tokenizer = AutoTokenizer.from_pretrained('./model/minimind_tokenizer')
-
     model = MiniMindLM(lm_config).to(args.device)
-
     Logger(f'LLM总参数量：{sum(p.numel() for p in model.parameters() if p.requires_grad) / 1e6:.3f} 百万')
-
     return model, tokenizer
-</code>
-
+```
 
 ### Reference
 BPE 算法原理及使用指南【深入浅出】：https://zhuanlan.zhihu.com/p/448147465 by Suprit
