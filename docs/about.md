@@ -27,3 +27,9 @@ title: About Me
 
 1. **Liao J**, Sun C, Zheng J, et al. Dred: A drl-based energy-efficient data collection scheme for uav-assisted wsns[C]. 2022 IEEE 22nd International Conference on Communication Technology (ICCT), 2022, 846-851.
 2. **Liao J**, Sun C, Zheng J, et al. Multi-agent reinforcement learning for backscattering data collection in multi-uav iot[C]. ICC 2024-IEEE International Conference on Communications, 2024,.
+
+
+### 硕士毕业论文
+项目地址：https://github.com/AkyuC/masterpaper_pic
+
+论文研究基于深度强化学习的无人机数据收集方法研究，里面有 overleaf 的项目，可以直接编译得到 PDF
