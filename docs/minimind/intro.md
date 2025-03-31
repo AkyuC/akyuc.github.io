@@ -1,5 +1,11 @@
-主要包含下面这几块：Tokenizer、Pretrain、SFT、LoRA、RLHF-DPO、模型蒸馏
+主要包含下面这几块：
+<a href="/minimind/tokenizer.html">Tokenizer</a>、
+<a href="/minimind/pretrain.html">Pretrain</a>、
+<a href="/minimind/sft.html">SFT</a>、
+<a href="/minimind/lora.html">LoRA</a>、
+<a href="/minimind/dpo.html">RLHF-DPO</a>、
+<a href="/minimind/distillation.html">模型蒸馏</a>
 
-### Tokenizer 分词器
+基本流程如下所示：
 
-分词器实际上就是
+![BPE](/img/minimind/process.jpg)

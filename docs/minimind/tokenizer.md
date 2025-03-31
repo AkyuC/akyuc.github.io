@@ -8,23 +8,45 @@
 
 目前最常用的三种分词算法是 BPE（Byte-Pair Encoding）、WordPiece 和 SentencePiece，简要介绍一下（~~抄一下~~）。
 
-### WordPiece (Subword 算法)
-基于子词的分词方法（Subword Tokenization）。
-这种方法的目的是通过一个有限的词表 来解决所有单词的分词问题，同时尽可能将结果中 token 的数目降到最低。
-
-例如，可以用更小的词片段来组成更大的词，例如：
-
-“unfortunately ” = “un ” + “for ” + “tun ” + “ate ” + “ly ”。
-
-可以看到，有点类似英语中的词根词缀拼词法，其中的这些小片段又可以用来构造其他词。
-可见这样做，既可以降低词表的大小，同时对相近词也能更好地处理。
-
+主要看一下 BPE 算法
 
 ### BPE（Byte-Pair Encoding）
 字节对编码（BPE, Byte Pair Encoder），又称 digram coding 双字母组合编码，是一种数据压缩 算法，用来在固定大小的词表中实现可变⻓度的子词。
 该算法简单有效，因而目前它是最流行的方法。
 
+BPE 首先将词分成单个字符，然后依次用另一个字符替换频率最高的一对字符 ，直到循环次数结束
+
+1. 准备足够大的训练语料，并确定期望的Subword词表大小
+2. 将单词拆分为成最小单元。比如英文中26个字母加上各种符号，这些作为初始词表
+3. 在语料上统计单词内相邻单元对的频数，选取频数最高的单元对合并成新的Subword单元
+4. 重复第3步直到达到第1步设定的Subword词表大小或下一个最高频数为1
+
+![BPE](/img/minimind/BPE.jpg)
+
+简要流程可以查看：https://zhuanlan.zhihu.com/p/191648421
+
+### BBPE
+BPE理论上还是会出现OOV的，当词汇表的大小受限时，一些较少频繁出现的子词和没有在训练过程中见过的子词，就会无法进入词汇表出现OOV，而Byte-level BPE(BBPE)理论上是不会出现这个情况的。
+
+Byte-level BPE(BBPE)和Byte-Pair Encoding (BPE)区别就是BPE是最小词汇是字符级别，而BBPE是字节级别的，通过UTF-8的编码方式这一个字节的256的范围，理论上可以表示这个世界上的所有字符。
+
+所以实现的步骤和BPE就是实现的粒度不一样，其他的都是一样的。
+
+### minimind 中的 tokneizer
+在 train_pretrain.py 文件中，直接加载已经分好的词表
+
+`
+def init_model(lm_config):
+    tokenizer = AutoTokenizer.from_pretrained('./model/minimind_tokenizer')
+    model = MiniMindLM(lm_config).to(args.device)
+    Logger(f'LLM总参数量：{sum(p.numel() for p in model.parameters() if p.requires_grad) / 1e6:.3f} 百万')
+    return model, tokenizer
+`
 
 
 ### Reference
-BPE 算法原理及使用指南【深入浅出】https://zhuanlan.zhihu.com/p/448147465 by Suprit
+BPE 算法原理及使用指南【深入浅出】：https://zhuanlan.zhihu.com/p/448147465 by Suprit
+
+NLP三大Subword模型详解：BPE、WordPiece、ULM：https://zhuanlan.zhihu.com/p/191648421 by 阿北
+
+LLM大语言模型之Tokenization分词方法（WordPiece，Byte-Pair Encoding (BPE)，Byte-level BPE(BBPE)原理及其代码实现）：https://zhuanlan.zhihu.com/p/652520262 by Glan格蓝
