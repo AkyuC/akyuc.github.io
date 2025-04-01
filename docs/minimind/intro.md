@@ -8,4 +8,4 @@
 
 基本流程如下所示：
 
-![BPE](/img/minimind/process.jpg)
+![process](/img/minimind/process.jpg)
