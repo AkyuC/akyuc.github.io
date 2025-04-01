@@ -22,23 +22,14 @@ moe model 使用 MoE 层替换了 FFN 层，在一次推理中不激活所有的
 
 这里的 token Embedding 实际上就是分词器输出之后，每个词的 ID，比如说 “我” 可能 ID 就是 2，用二进制表示就是只有最低的第二位为 1，其余为 0。
 
-</div>
-<div style="flex-basis: 30%;">
+<img src="/img/minimind/transformer-pos-embedding.png" alt="transformer-pos-embedding" style="width: 30%; height: auto;" />
 
-![tansformer-pos-embedding](/img/minimind/transformer-pos-embedding.png)
-</div>
-</div>
 众所周知，transformer模型之所以能够取得如此卓越的效果，其中的Attention机制功不可没，它的本质是计算输入序列中的每个token与整个序列的注意力权重，所以位置编码很重要。
 
 目前常用的位置编码为 Sinusoidal functions，其中 d 表示词向量的维度，k 表示位置索引，2i 和 2i+1 表示位置向量的分量索引，
-例如 p_{k,2i} 和 p_{k,2i+1} 分别表示位置 k 的位置向量的第 2i 和第 2i+1 个分量：
+例如 $p_{k,2i}$ 和 $p_{k,2i+1}$ 分别表示位置 k 的位置向量的第 2i 和第 2i+1 个分量：
 
-</div>
-<div style="flex-basis: 30%;">
-
-![sinusoidal-functions](/img/minimind/sinusoidal-functions.png)
-</div>
-</div>
+<img src="/img/minimind/sinusoidal-functions.png" alt="sinusoidal-functions" style="width: 30%; height: auto;" />
 
 ### Transformer
 这部分就不详细介绍了，网上有很多写得很好的，可以参考下面的 Reference。
@@ -47,14 +38,25 @@ RoPE 加入是对传统 transformer 架构的改进。RoPE位置编码通过将�
 
 从前面我们可以知道，token embedding 中的 position embedding 具有位置信息，是个多维的向量。
 我的理解是：通过向量角度的旋转，可以使得两个 token 的向量同方向，进而能够直接比较两者的位置信息，这样能够在 **角度** 和 **长度** 两个角度比较相似性。
-</div>
-<div style="flex-basis: 50%;">
 
-![RoPE](/img/minimind/RoPE.png)
-</div>
-</div>
+<img src="/img/minimind/RoPE.png" alt="RoPE" style="width: 50%; height: auto;" />
 
 后面就是比较普通的归一化、线性层、softMax，最后分词器 decode
+
+### model train
+预训练阶段就是在训练模型预测下一个 token，然后计算交叉熵 loss 累积梯度下降更新参数
+
+在信息论当中，使用KL散度（“相对熵”）来衡量两个分布 P 和 Q 之间的距离：
+<img src="/img/minimind/KL.png" alt="KL" style="width: 50%; height: auto;" />
+
+其中第一部分是 P 的熵，第二个部分就是交叉熵 $H(p,q) = - \sum_{i=1}^n p(x_i) log q(x_i)$。
+
+在机器学习当中 P 往往用来表示样本的真实分布，即需要预测的下个 token 的分布，这个可以从数据集中获取，这部分是一个固定值。
+Q 为模型输出得到的分布，即实际模型输出的下个 token 的分布。
+
+当模型预测的 token 分布和实际数据集的 token 分布完全相同时， KL 散度为 0，模型完全拟合。
+
+但是在进行梯度更新时，由于$H(P)$是样本中的，不会改变，与模型无关，对模型参数求导为 0 ，所以在实际参数更新中，我们只关注$H(p,q)$。
 
 ### minimind
 代码需要分析 model/model.py、train_pretrain.py，待后面分析。
@@ -65,3 +67,7 @@ Transformer模型详解（图解最完整版）：https://zhuanlan.zhihu.com/p/3
 Transformer学习笔记一：Positional Encoding（位置编码）：https://zhuanlan.zhihu.com/p/454482273
 
 图解RoPE旋转位置编码及其特性：https://zhuanlan.zhihu.com/p/667864459
+
+深度学习 | 反向传播详解：https://zhuanlan.zhihu.com/p/115571464
+
+交叉熵的推导：https://zhuanlan.zhihu.com/p/126272731
