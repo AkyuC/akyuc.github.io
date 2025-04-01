@@ -42,4 +42,5 @@ minimind 作者对 匠数大模型SFT数据集 和 Magpie-SFT数据集 进行了
 
 
 ### Reference
-炼石成丹：大语言模型微调实战系列（二）模型微调篇：https://aws.amazon.com/cn/blogs/china/practical-series-on-fine-tuning-large-language-models-part-two/
+- 炼石成丹：大语言模型微调实战系列（二）模型微调篇：https://aws.amazon.com/cn/blogs/china/practical-series-on-fine-tuning-large-language-models-part-two/
+https://zhuanlan.zhihu.com/p/650287173
