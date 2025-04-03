@@ -28,7 +28,7 @@ LoRA 基本思想:
 LoRA 需要更新的参数远小于整个模型的参数，甚至小于 PLM 的 0.01 %。
 
 前向推导公式为：
-<img src="/img/minimind/lora-format1.png" alt="lora-format1" style="width: 50%; height: auto; display: block; margin: 0 auto;"  />
+<img src="/img/minimind/lora-format1.png" alt="lora-format1" style="width: 100%; height: auto; display: block; margin: 0 auto;"  />
 
 ### SFT
 SFT 实际上和预训练一致，只是使用的数据集不一样了，并且一般是固定格式的 prompt。
@@ -56,7 +56,7 @@ minimind 作者对 匠数大模型SFT数据集 和 Magpie-SFT数据集 进行了
 形式上，可以用价值函数（Value Function）或动作价值函数（Q函数）来表示。
 
 在 NLP 中的 RL 简要如下所示
-<img src="/img/minimind/RL-in-NLP.png" alt="RL-in-NLP" style="width: 60%; height: auto; display: block; margin: 0 auto;"  />
+<img src="/img/minimind/RL-in-NLP.png" alt="RL-in-NLP" style="width: 100%; height: auto; display: block; margin: 0 auto;"  />
 
 状态S：输入 prompt
 
@@ -86,10 +86,10 @@ DPO 不是传统意义上的强化学习，但它与强化学习有一定的关�
 
 DPO 的基本原理：增加偏好样本的对数概率与减小非偏好样本响应的对数概率。
 它结合了动态加权机制，以避免仅使用概率比目标时遇到的模型退化问题。
-<img src="/img/minimind/dpo-model.png" alt="dpo-model" style="width: 60%; height: auto; display: block; margin: 0 auto;"  />
+<img src="/img/minimind/dpo-model.png" alt="dpo-model" style="width: 100%; height: auto; display: block; margin: 0 auto;"  />
 
 DPO 损失函数，[参考](https://zhuanlan.zhihu.com/p/642569664)：
-<img src="/img/minimind/dpo-loss.png" alt="dpo-loss" style="width: 60%; height: auto; display: block; margin: 0 auto;"  />
+<img src="/img/minimind/dpo-loss.png" alt="dpo-loss" style="width: 80%; height: auto; display: block; margin: 0 auto;"  />
 
 #### GRPO
 
