@@ -92,7 +92,15 @@ DPO 损失函数，[参考](https://zhuanlan.zhihu.com/p/642569664)：
 <img src="/img/minimind/dpo-loss.png" alt="dpo-loss" style="width: 80%; height: auto; display: block; margin: 0 auto;"  />
 
 #### GRPO
+GRPO 是对 PPO 的一种改进版本，属于online RL。它通过暴力采样求均值的方式替代了 PPO 中的 Critic Model。
+同时保留了PPO中的重要性采样和裁剪机制。GRPO中冻结了Ref和RM 2个模型，仅需要训练Policy Model。
+<img src="/img/minimind/grpo-model.png" alt="grpo-model" style="width: 80%; height: auto; display: block; margin: 0 auto;"  />
 
+GRPO 的目标函数:
+<img src="/img/minimind/grpo-object.png" alt="grpo-object" style="width: 100%; height: auto; display: block; margin: 0 auto;"  />
+
+算法：
+<img src="/img/minimind/grpo-alg.png" alt="grpo-alg" style="width: 90%; height: auto; display: block; margin: 0 auto;"  />
 
 ### Reference
 - 炼石成丹：大语言模型微调实战系列（二）模型微调篇：https://aws.amazon.com/cn/blogs/china/practical-series-on-fine-tuning-large-language-models-part-two/
