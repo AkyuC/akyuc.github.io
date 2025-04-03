@@ -1,13 +1,13 @@
 export const sidebarBlog = [
     {
-      text: 'minimind',
+      text: 'llm-structure',
       collapsed: false,
       items: [
-        { text: '简介', link: '/minimind/intro.html' },
-        { text: '分词器', link: '/minimind/tokenizer.html' },
-        { text: '预训练', link: '/minimind/pretrain.html' },
-        { text: '微调', link: '/minimind/fine-tuning.html' },
-        { text: '压缩', link: '/minimind/compression.html' }
+        { text: '简介', link: '/llm-structure/intro.html' },
+        { text: '分词器', link: '/llm-structure/tokenizer.html' },
+        { text: '预训练', link: '/llm-structure/pretrain.html' },
+        { text: '微调', link: '/llm-structure/fine-tuning.html' },
+        { text: '压缩', link: '/llm-structure/compression.html' }
       ]
     }
 ]

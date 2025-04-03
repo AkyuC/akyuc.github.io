@@ -19,7 +19,7 @@ BPE 首先将词分成单个字符，然后依次用另一个字符替换频率�
 3. 在语料上统计单词内相邻单元对的频数，选取频数最高的单元对合并成新的Subword单元
 4. 重复第3步直到达到第1步设定的Subword词表大小或下一个最高频数为1
 
-![BPE](/img/minimind/BPE.jpg)
+![BPE](/img/llm-structure/BPE.jpg)
 
 简要流程可以查看：https://zhuanlan.zhihu.com/p/191648421
 

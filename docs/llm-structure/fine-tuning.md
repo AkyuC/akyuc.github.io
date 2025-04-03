@@ -15,10 +15,10 @@
 - Adapter-Tuning：将较小的神经网络层或模块插入预训练模型的每一层，这些新插入的神经模块称为 adapter（适配器），下游任务微调时也只训练这些适配器参数；
 - LoRA：通过学习小参数的低秩矩阵来近似模型权重矩阵 W 的参数更新，训练时只优化低秩矩阵参数。
 
-<img src="/img/minimind/PEFT.png" alt="PEFT" style="width: 80%; height: auto; display: block; margin: 0 auto;"  />
+<img src="/img/llm-structure/PEFT.png" alt="PEFT" style="width: 80%; height: auto; display: block; margin: 0 auto;"  />
 
 #### LoRA（Low-Rank Adaptation）
-<img src="/img/minimind/lora-structure.png" alt="lora-structure" style="width: 50%; height: auto; display: block; margin: 0 auto;"  />
+<img src="/img/llm-structure/lora-structure.png" alt="lora-structure" style="width: 50%; height: auto; display: block; margin: 0 auto;"  />
 
 LoRA 基本思想:
 - 在原始 PLM (Pre-trained Language Model) 旁边增加一个旁路，做一个降维再升维的操作，来模拟所谓的 intrinsic rank（本征秩，最能体现数据本质的维度(特征)数目）。
@@ -28,7 +28,7 @@ LoRA 基本思想:
 LoRA 需要更新的参数远小于整个模型的参数，甚至小于 PLM 的 0.01 %。
 
 前向推导公式为：
-<img src="/img/minimind/lora-format1.png" alt="lora-format1" style="width: 100%; height: auto; display: block; margin: 0 auto;"  />
+<img src="/img/llm-structure/lora-format1.png" alt="lora-format1" style="width: 100%; height: auto; display: block; margin: 0 auto;"  />
 
 ### SFT
 SFT 实际上和预训练一致，只是使用的数据集不一样了，并且一般是固定格式的 prompt。
@@ -47,7 +47,7 @@ minimind 作者对 匠数大模型SFT数据集 和 Magpie-SFT数据集 进行了
 ```
 
 ### RL
-<img src="/img/minimind/RL-model.png" alt="RL-model" style="width: 60%; height: auto; display: block; margin: 0 auto;"  />
+<img src="/img/llm-structure/RL-model.png" alt="RL-model" style="width: 60%; height: auto; display: block; margin: 0 auto;"  />
 
 强化学习是一种机器学习方法，智能体通过与环境交互，尝试不同的行为策略，根据获得的奖励信号不断优化自己的决策，以最大化长期累积奖励。
 其核心思想是“试错学习”，类似于人类通过实践和反馈来改进行为。
@@ -56,7 +56,7 @@ minimind 作者对 匠数大模型SFT数据集 和 Magpie-SFT数据集 进行了
 形式上，可以用价值函数（Value Function）或动作价值函数（Q函数）来表示。
 
 在 NLP 中的 RL 简要如下所示
-<img src="/img/minimind/RL-in-NLP.png" alt="RL-in-NLP" style="width: 100%; height: auto; display: block; margin: 0 auto;"  />
+<img src="/img/llm-structure/RL-in-NLP.png" alt="RL-in-NLP" style="width: 100%; height: auto; display: block; margin: 0 auto;"  />
 
 状态S：输入 prompt
 
@@ -86,21 +86,21 @@ DPO 不是传统意义上的强化学习，但它与强化学习有一定的关�
 
 DPO 的基本原理：增加偏好样本的对数概率与减小非偏好样本响应的对数概率。
 它结合了动态加权机制，以避免仅使用概率比目标时遇到的模型退化问题。
-<img src="/img/minimind/dpo-model.png" alt="dpo-model" style="width: 100%; height: auto; display: block; margin: 0 auto;"  />
+<img src="/img/llm-structure/dpo-model.png" alt="dpo-model" style="width: 100%; height: auto; display: block; margin: 0 auto;"  />
 
 DPO 损失函数，[参考](https://zhuanlan.zhihu.com/p/642569664)：
-<img src="/img/minimind/dpo-loss.png" alt="dpo-loss" style="width: 80%; height: auto; display: block; margin: 0 auto;"  />
+<img src="/img/llm-structure/dpo-loss.png" alt="dpo-loss" style="width: 80%; height: auto; display: block; margin: 0 auto;"  />
 
 #### GRPO
 GRPO 是对 PPO 的一种改进版本，属于online RL。它通过暴力采样求均值的方式替代了 PPO 中的 Critic Model。
 同时保留了PPO中的重要性采样和裁剪机制。GRPO中冻结了Ref和RM 2个模型，仅需要训练Policy Model。
-<img src="/img/minimind/grpo-model.png" alt="grpo-model" style="width: 80%; height: auto; display: block; margin: 0 auto;"  />
+<img src="/img/llm-structure/grpo-model.png" alt="grpo-model" style="width: 80%; height: auto; display: block; margin: 0 auto;"  />
 
 GRPO 的目标函数:
-<img src="/img/minimind/grpo-object.png" alt="grpo-object" style="width: 100%; height: auto; display: block; margin: 0 auto;"  />
+<img src="/img/llm-structure/grpo-object.png" alt="grpo-object" style="width: 100%; height: auto; display: block; margin: 0 auto;"  />
 
 算法：
-<img src="/img/minimind/grpo-alg.png" alt="grpo-alg" style="width: 90%; height: auto; display: block; margin: 0 auto;"  />
+<img src="/img/llm-structure/grpo-alg.png" alt="grpo-alg" style="width: 90%; height: auto; display: block; margin: 0 auto;"  />
 
 ### Reference
 - 炼石成丹：大语言模型微调实战系列（二）模型微调篇：https://aws.amazon.com/cn/blogs/china/practical-series-on-fine-tuning-large-language-models-part-two/
