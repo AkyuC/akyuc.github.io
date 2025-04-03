@@ -79,6 +79,7 @@ RM 是监督学习，令奖励模型输出一个标量评分 R 回答：
 
 #### DPO
 DPO 不是传统意义上的强化学习，但它与强化学习有一定的关联，并且可以被视为一种替代方法来解决某些强化学习问题。
+其优化过程关注于最大化偏好数据下策略的表现，通过对比学习等技术直接在策略上进行优化，避免了额外的奖励函数建模步骤。
 
 现有 RLHF 方法通常会首先使用一个奖励模型（Reward Model）来拟合一个包含提示（Prompt）和人类对响应对（Response Pair）偏好的数据集，然后通过强化学习找到一个能够最大化该奖励模型的策略（Policy）。
 相比之下，DPO 直接以简单的分类目标优化最能满足偏好的策略，通过拟合一个隐式奖励模型，其对应的最优策略可以以闭式形式（Closed Form）提取出来。
@@ -87,6 +88,8 @@ DPO 的基本原理：增加偏好样本的对数概率与减小非偏好样本�
 它结合了动态加权机制，以避免仅使用概率比目标时遇到的模型退化问题。
 <img src="/img/minimind/dpo-model.png" alt="dpo-model" style="width: 60%; height: auto; display: block; margin: 0 auto;"  />
 
+DPO 损失函数，[参考](https://zhuanlan.zhihu.com/p/642569664)：
+<img src="/img/minimind/dpo-loss.png" alt="dpo-loss" style="width: 60%; height: auto; display: block; margin: 0 auto;"  />
 
 #### GRPO
 
@@ -98,3 +101,5 @@ DPO 的基本原理：增加偏好样本的对数概率与减小非偏好样本�
 - LORA：大模型轻量级微调：https://www.zhihu.com/tardis/zm/art/623543497
 - 大模型高效微调-LoRA原理详解和训练过程深入分析：https://zhuanlan.zhihu.com/p/702629428
 - 大模型中的强化学习：https://zhuanlan.zhihu.com/p/693582342
+- DPO: Direct Preference Optimization 论文解读及代码实践：https://zhuanlan.zhihu.com/p/642569664
+- 详解DeepSeek-R1核心强化学习算法：GRPO:https://zhuanlan.zhihu.com/p/21046265072
