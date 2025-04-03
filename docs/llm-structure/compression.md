@@ -37,9 +37,19 @@ loss 函数是输出的 KL 散度，然后进行更新，有点类似回归。
 - IF 致力于仅基于阅读任务描述来增强语言模型执行新任务的能力，而不依赖于少数样本。通过使用一系列以指令表示的任务进行微调，语言模型展示了准确执行以前未见过的指令中描述的任务的能力。
 
 ### 量化（Quantization）
+根据应用量化压缩模型的阶段，可以将模型量化分为：
+- 量化感知训练（Quantization Aware Training, QAT）：在模型训练过程中加入伪量化算子，通过训练时统计输入输出的数据范围可以提升量化后模型的精度，适用于对模型精度要求较高的场景；其量化目标无缝地集成到模型的训练过程中。这种方法使LLM在训练过程中适应低精度表示，增强其处理由量化引起的精度损失的能力。这种适应旨在量化过程之后保持更高性能。
+- 量化感知微调（Quantization-Aware Fine-tuning，QAF）：在微调过程中对LLM进行量化。主要目标是确保经过微调的LLM在量化为较低位宽后仍保持性能。通过将量化感知整合到微调中，以在模型压缩和保持性能之间取得平衡。
+- 训练后量化（Post Training Quantization, PTQ）：在LLM训练完成后对其参数进行量化，只需要少量校准数据，适用于追求高易用性和缺乏训练资源的场景。主要目标是减少LLM的存储和计算复杂性，而无需对LLM架构进行修改或进行重新训练。PTQ的主要优势在于其简单性和高效性。但PTQ可能会在量化过程中引入一定程度的精度损失。
 
 ### 低秩分解（Low-Rank Factorization）
+低秩分解的基本思想: 将原来大的权重矩阵分解成多个小的矩阵，用低秩矩阵近似原有权重矩阵。
+这样可以大大降低模型分解之后的计算量，常常用于神经网络模型分解。
+<img src="/img/llm-structure/low-rank-expansion.png" alt="low-rank-expansion" style="width: 60%; height: auto; display: block; margin: 0 auto;"  />
+
 
 ### Reference
 - 大模型压缩首篇综述来啦~：https://zhuanlan.zhihu.com/p/652434165
 - 大模型知识蒸馏概述：https://zhuanlan.zhihu.com/p/659943824
+- 大模型量化概述：https://zhuanlan.zhihu.com/p/662881352
+- 模型压缩之模型分解篇：SVD分解，CP分解和Tucker分解：https://zhuanlan.zhihu.com/p/490455377
