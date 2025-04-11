@@ -14,7 +14,13 @@ export const sidebarBlog = [
       text: 'llm-application',
       collapsed: true,
       items: [
-        { text: 'MCP', link: '/llm-application/mcp.html' }
+      ]
+    },
+    {
+      text: 'llm-tools',
+      collapsed: true,
+      items: [
+        { text: 'MCP', link: '/llm-tools/mcp.html' }
       ]
     }
 ]
