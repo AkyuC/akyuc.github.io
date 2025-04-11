@@ -35,7 +35,7 @@ functions参数是将要被弃用的一个参数，更加推荐使用tools参数
 通过调用 tools 就能使用自定义的工具。
 
 ### MCP
-<img src="/img/llm-application/mcp-structure.png" alt="mcp-structure" style="width: 90%; height: auto; display: block; margin: 0 auto;" />
+<img src="/img/llm-tools/mcp-structure.png" alt="mcp-structure" style="width: 90%; height: auto; display: block; margin: 0 auto;" />
 
 MCP 的核心架构如上所示。
 MCP 遵循客户端-服务器架构（client-server），其中包含以下几个核心概念：
