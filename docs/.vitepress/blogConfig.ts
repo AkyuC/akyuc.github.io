@@ -11,12 +11,6 @@ export const sidebarBlog = [
       ]
     },
     {
-      text: 'llm-application',
-      collapsed: true,
-      items: [
-      ]
-    },
-    {
       text: 'llm-tools',
       collapsed: true,
       items: [
