@@ -37,3 +37,40 @@ Java 入口程序规定的方法必须是静态方法。
 final 为常量修饰符。
 
 Java的字符串除了是一个引用类型外，还有个重要特点，就是字符串不可变。
+
+### 面向对象
+继承有个特点，就是子类无法访问父类的 private 字段或者 private 方法。
+用 protected 修饰的字段可以被子类访问。
+super 关键字表示父类（超类）。子类引用父类的字段时，可以用 super.fieldName。
+
+阻止继承：
+正常情况下，只要某个 class 没有 final 修饰符，那么任何类都可以从该 class 继承。
+从 Java 15 开始，允许使用 sealed 修饰 class，并通过 permits 明确写出能够从该 class 继承的子类名称。
+
+覆写 Object 方法，
+因为所有的 class 最终都继承自 Object，而 Object 定义了几个重要的方法：
+- toString()：把instance输出为String；
+- equals()：判断两个instance是否逻辑相等；
+- hashCode()：计算一个instance的哈希值。
+
+继承可以允许子类覆写父类的方法。
+如果一个父类不允许子类对它的某个方法进行覆写，可以把该方法标记为 final。用 final 修饰的方法不能被 Override。
+
+类使用 extends 继承，接口使用 implements 实现。
+在 Java 中，default 方法是 Java 8 引入的一个新特性，主要用于接口（interface）中。它允许在接口中定义带有具体实现的方法，而不仅仅是抽象方法。
+一个 interface 可以继承自另一个 interface。interface 继承自 interface 使用 extends，它相当于扩展了接口的方法。
+因为 interface 是一个纯抽象类，所以它不能定义实例字段。
+但是，interface 是可以有静态字段的，并且静态字段必须为 final 类型。
+
+Inner Class 和普通 Class 相比，除了能引用 Outer 实例外，还有一个额外的“特权”，就是可以修改 Outer Class 的 private 字段，因为 Inner Class 的作用域在 Outer Class 内部，所以能访问 Outer Class 的 private 字段和方法。
+
+### java 核心类
+StringBuilder：可变对象，可以预分配缓冲区，这样，往 StringBuilder 中新增字符时，不会创建新的临时对象。
+
+StringJoiner：字符串拼接，需要指定开头和结尾。String 还提供了一个静态方法 join()，这个方法在内部使用了 StringJoiner 来拼接字符串，在不需要指定“开头”和“结尾”的时候，用 String.join() 更方便。
+
+JavaBean：要枚举一个 JavaBean 的所有属性，可以直接使用 Java 核心库提供的 Introspector。
+
+记录类：record Point(int x, int y) {}，生成一个不变类。
+
+### 异常处理
