@@ -72,25 +72,3 @@ StringJoiner：字符串拼接，需要指定开头和结尾。String 还提供�
 JavaBean：要枚举一个 JavaBean 的所有属性，可以直接使用 Java 核心库提供的 Introspector。
 
 记录类：record Point(int x, int y) {}，生成一个不变类。
-
-### 异常处理
-Commons Logging和Log4j这一对好基友，它们一个负责充当日志API，一个负责实现日志底层，搭配使用非常便于开发。
-
-其实SLF4J类似于Commons Logging，也是一个日志接口，而Logback类似于Log4j，是一个日志的实现。
-
-### 反射
-JVM 为每个加载的 class 创建了对应的 Class 实例，并在实例中保存了该 class 的所有信息，包括类名、包名、父类、实现的接口、所有方法、字段等，因此，如果获取了某个 Class 实例，我们就可以通过这个 Class 实例获取到该实例对应的 class 的所有信息。
-
-这种通过 Class 实例获取 class 信息的方法称为反射（Reflection）。
-Clas s实例在 JVM 中是唯一的，所以获取的 Class 实例是同一个实例。可以用 == 比较两个 Class 实例。
-
-### 注解
-注解是一种用作标注的“元数据”。
-现在大量的框架使用注解进行功能开发。
-
-### 泛型
-泛型就是定义一种模板，
-最基础的使用：
-> List<String> list = new ArrayList<String>();
-
-编写泛型类时，要特别注意，泛型类型不能用于静态方法。
