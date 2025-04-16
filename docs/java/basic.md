@@ -89,8 +89,8 @@ Clas s实例在 JVM 中是唯一的，所以获取的 Class 实例是同一个�
 现在大量的框架使用注解进行功能开发，例如 @Test、@Value。
 
 ### 泛型
-泛型就是定义一种模板，例如 ArrayList<div>&lt;</div>T<div>&gt;</div>，然后在代码中为用到的类创建对应的 ArrayList<div>&lt;</div>类型<div>&gt;</div>。
+泛型就是定义一种模板，
 最基础的使用：
 > List<String> list = new ArrayList<String>();
 
-编写泛型类时，要特别注意，泛型类型<div>&lt;</div>T<div>&gt;</div>不能用于静态方法。
+编写泛型类时，要特别注意，泛型类型不能用于静态方法。
