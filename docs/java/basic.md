@@ -91,8 +91,6 @@ Clas s实例在 JVM 中是唯一的，所以获取的 Class 实例是同一个�
 ### 泛型
 泛型就是定义一种模板，例如 ArrayList<T>，然后在代码中为用到的类创建对应的 ArrayList<类型>。
 最基础的使用：
-```
-List<String> list = new ArrayList<String>();
-```
+> List<String> list = new ArrayList<String>();
 
 编写泛型类时，要特别注意，泛型类型<T>不能用于静态方法。
