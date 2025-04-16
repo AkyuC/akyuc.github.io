@@ -72,7 +72,6 @@ StringJoiner：字符串拼接，需要指定开头和结尾。String 还提供�
 JavaBean：要枚举一个 JavaBean 的所有属性，可以直接使用 Java 核心库提供的 Introspector。
 
 记录类，生成一个不变类，类似int的。
-> record Point(int x, int y) {}
 
 ### 异常处理
 Commons Logging和Log4j这一对好基友，它们一个负责充当日志API，一个负责实现日志底层，搭配使用非常便于开发。
@@ -91,7 +90,4 @@ Clas s实例在 JVM 中是唯一的，所以获取的 Class 实例是同一个�
 
 ### 泛型
 泛型就是定义一种模板，
-最基础的使用：
-> List<String> list = new ArrayList<String>();
-
 编写泛型类时，要特别注意，泛型类型不能用于静态方法。
