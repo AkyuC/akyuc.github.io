@@ -60,4 +60,5 @@ Q 为模型输出得到的分布，即实际模型输出的下个 Token 的分�
 - Transformer学习笔记一：Positional Encoding（位置编码）：https://zhuanlan.zhihu.com/p/454482273
 - 图解RoPE旋转位置编码及其特性：https://zhuanlan.zhihu.com/p/667864459
 - 深度学习 | 反向传播详解：https://zhuanlan.zhihu.com/p/115571464
+- 反向传播算法推导-全连接神经网络：https://zhuanlan.zhihu.com/p/39195266
 - 交叉熵的推导：https://zhuanlan.zhihu.com/p/126272731
